@@ -41,7 +41,8 @@ pub enum Token {
     Return
 }
 
-// I need to use lazy_static to get a
+// I need to use lazy_static to get a global mutable object (hashmap)
+// I put a mutex on it incase I make this multithreaded + stackoverflow told me to
 lazy_static! {
     static ref IDENTIFIERS: Mutex<HashMap<&'static str, Token>> = {
         let mut m = HashMap::new();
